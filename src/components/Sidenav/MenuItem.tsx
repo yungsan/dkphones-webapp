@@ -2,14 +2,18 @@ import clsx from "clsx";
 import { Link, useLocation } from "react-router-dom";
 import { Menu } from "../../utils/interfaces";
 import MenuWithChild from "./MenuWithChild";
+import { DisplaySidenavContext } from "../../App";
+import { useContext } from "react";
 
 function MenuItem({ props }: { props: Menu }) {
   const location = useLocation();
+  const display = useContext(DisplaySidenavContext);
 
   const MenuWithoutChild = () => {
     return (
       <Link
         to={props.path}
+        // onClick={() => display?.setState(false)}
         className={clsx(
           "w-full py-4 px-8 flex flex-wrap items-center justify-between",
           {

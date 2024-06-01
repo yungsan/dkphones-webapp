@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { FetchResponse, InputField, Widget } from "../../utils/interfaces";
-import { FaUserTie } from "react-icons/fa";
 import clsx from "clsx";
 import PageWidget from "../../components/PageWidget";
 import MyTable from "../../components/Table";
@@ -33,14 +32,7 @@ function Orders() {
     fetchData();
   }, []);
 
-  const widgets: Widget[] = [
-    {
-      title: "Thêm thương hiệu",
-      span: "Thêm một thương hiệu!",
-      icon: FaUserTie,
-      onClick: () => setOpen(true),
-    },
-  ];
+  const widgets: Widget[] = [];
 
   const inputFields: InputField[] = [
     {

@@ -25,3 +25,12 @@ export function formatMoney(number: number) {
     return (isNegative ? "-" : "") + (number / 1000000000).toFixed(1) + " TỶ";
   }
 }
+
+export function formatPhoneNumber(phoneNumberString: string) {
+  const cleaned = ("" + phoneNumberString).replace(/\D/g, "");
+  const match = cleaned.match(/^(\d{3})(\d{3})(\d{4})$/);
+  if (match) {
+    return "(" + match[1] + ") " + match[2] + "-" + match[3];
+  }
+  return phoneNumberString;
+}

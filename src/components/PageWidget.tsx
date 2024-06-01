@@ -5,7 +5,7 @@ function PageWidget({ props }: { props: Widget }) {
   return (
     <div
       onClick={props.onClick}
-      className="flex flex-wrap bg-white w-[90%] h-full shadow-md px-4 py-4 rounded-md items-center justify-between cursor-pointer"
+      className="flex flex-wrap bg-white lg:w-[90%] w-full h-full shadow-md px-4 py-4 rounded-md items-center justify-between cursor-pointer"
     >
       <div
         className={clsx(

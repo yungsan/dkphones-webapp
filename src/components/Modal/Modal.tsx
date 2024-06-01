@@ -22,7 +22,7 @@ const style = {
   top: "50%",
   left: "50%",
   transform: "translate(-50%, -50%)",
-  width: "65%",
+  width: { lg: "65%", xs: "90%" },
   height: "90%",
   bgcolor: "background.paper",
   border: "2px solid #000",
@@ -130,6 +130,8 @@ function MyModal({
   handleSubmit: () => void;
   heading: string;
 }) {
+  console.log(inputFields);
+
   return (
     <Modal
       open={openState.open}
@@ -153,8 +155,10 @@ function MyModal({
         >
           {inputFields.map((field, index) => {
             return (
-              <div key={index} className={`my-2 px-4 ${field.classes}`}>
-                {field.type === "text"
+              <div key={index} className={`my-2 lg:px-4 ${field.classes}`}>
+                {field.type === "text" ||
+                field.type === "password" ||
+                field.type === "email"
                   ? renderTextField(field)
                   : field.type === "radio"
                   ? renderSelect(field)

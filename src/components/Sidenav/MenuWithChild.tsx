@@ -2,10 +2,12 @@ import { Link } from "react-router-dom";
 import { Menu } from "../../utils/interfaces";
 import { IoChevronDown } from "react-icons/io5";
 import clsx from "clsx";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { DisplaySidenavContext } from "../../App";
 
 function MenuWithChild({ props }: { props: Menu }) {
   const [dropdown, setDropdown] = useState(false);
+  const display = useContext(DisplaySidenavContext);
 
   const handleDropdown = () => {
     setDropdown((prev) => !prev);
@@ -30,6 +32,7 @@ function MenuWithChild({ props }: { props: Menu }) {
             <Link
               key={index}
               to={props.path + subItem.path}
+              // onClick={() => display?.setState(false)}
               className={clsx(
                 "w-full py-4 pl-16 flex flex-wrap items-center justify-between",
                 {

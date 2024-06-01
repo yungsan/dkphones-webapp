@@ -96,7 +96,7 @@ function Brands() {
         })}
       >
         {widgets.map((widget, index) => (
-          <div key={index} className="w-1/4">
+          <div key={index} className="lg:w-1/3 w-full mb-4 lg:mb-0">
             <PageWidget props={widget} />
           </div>
         ))}

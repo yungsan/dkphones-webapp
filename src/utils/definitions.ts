@@ -265,9 +265,10 @@ export const BRAND_TABLE_FIELDS: TableField[] = [
 
 export const ORDER_TABLE_FIELDS: TableField[] = [
   { label: "Mã đơn", name: "OrderID", show: true },
-  { label: "Tên khách hàng", name: "CustomerName", show: true },
   { label: "Tên sản phẩm", name: "ProductName", show: true },
+  { label: "Số điện thoại", name: "PhoneNumber", show: true },
   { label: "Tổng cộng", name: "Total", show: true },
+  { label: "Địa chỉ", name: "Address", show: true },
   { label: "Số lượng", name: "Quantity", show: true },
   { label: "Tồn kho", name: "Remain", show: true },
   { label: "Trạng thái", name: "StatusName", show: true },

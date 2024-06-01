@@ -120,7 +120,7 @@ function ReceivedNotes() {
     },
     {
       label: "SKU",
-      classes: "w-1/2",
+      classes: "lg:w-1/2 w-full",
       type: "checkbox",
       name: "SKUList",
       value: SKUAndProductIDList,
@@ -128,7 +128,7 @@ function ReceivedNotes() {
     },
     {
       label: "Số lượng",
-      classes: "w-1/4",
+      classes: "lg:w-1/4 w-full",
       type: "text",
       name: "Quantity",
       value: Quantity,
@@ -136,7 +136,7 @@ function ReceivedNotes() {
     },
     {
       label: "Giá nhập",
-      classes: "w-1/4",
+      classes: "lg:w-1/4 w-full",
       type: "text",
       name: "Price",
       value: Price,
@@ -179,12 +179,12 @@ function ReceivedNotes() {
   return (
     <div className="">
       <div
-        className={clsx("w-full flex flex-wrap gap-x-4 mb-12", {
+        className={clsx("flex flex-wrap mb-12 mt-12 lg:mt-0", {
           "justify-between": widgets.length >= 4,
         })}
       >
         {widgets.map((widget, index) => (
-          <div key={index} className="w-1/4">
+          <div key={index} className="lg:w-1/3 w-full mb-4 lg:mb-0">
             <PageWidget props={widget} />
           </div>
         ))}

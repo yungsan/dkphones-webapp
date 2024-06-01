@@ -60,12 +60,12 @@ function Positions() {
   return (
     <div className="">
       <div
-        className={clsx("flex flex-wrap gap-x-4 mb-12", {
+        className={clsx("flex flex-wrap mb-12 mt-12 lg:mt-0", {
           "justify-between": widgets.length >= 4,
         })}
       >
         {widgets.map((widget, index) => (
-          <div key={index} className="w-1/4">
+          <div key={index} className="lg:w-1/3 w-full mb-4 lg:mb-0">
             <PageWidget props={widget} />
           </div>
         ))}

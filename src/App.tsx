@@ -8,16 +8,28 @@ import {
   SHIPPER_MENU,
   WAREHOUSE_MENU,
 } from "./utils/definitions";
-import { createContext, useEffect, useState } from "react";
+import {
+  Dispatch,
+  SetStateAction,
+  createContext,
+  useEffect,
+  useState,
+} from "react";
 import { fetchCurrentUser } from "./utils/api";
 import { CurrentUser, Menu, Roles } from "./utils/interfaces";
 
 export const SidenavContext = createContext<Menu[]>([]);
+export const DisplaySidenavContext = createContext<{
+  state: boolean;
+  setState: Dispatch<SetStateAction<boolean>>;
+} | null>(null);
 export const CurrentUserContext = createContext<CurrentUser | null>(null);
 
 export default function App() {
   const auth = { token: COOKIES.get("access_token") };
   const [sidenavMenu, setSidenavMenu] = useState<Menu[]>([]);
+  const [displaySidenavMenu, setDisplaySidenavMenu] = useState<boolean>(true);
+
   const [currentUser, setCurrentUser] = useState<CurrentUser | null>(null);
 
   useEffect(() => {
@@ -45,19 +57,26 @@ export default function App() {
   }, [auth.token]);
 
   return auth.token ? (
-    <SidenavContext.Provider value={sidenavMenu}>
-      <CurrentUserContext.Provider value={currentUser}>
-        <div className="">
-          <Topnav />
-          <Sidenav />
-          <div className="bg-slate-200 min-h-screen w-full pl-[22.5%] pb-8 pr-8 pt-32">
-            <div className="w-full min-h-screen p-8 relative">
-              <Outlet />
+    <DisplaySidenavContext.Provider
+      value={{
+        state: displaySidenavMenu,
+        setState: setDisplaySidenavMenu,
+      }}
+    >
+      <SidenavContext.Provider value={sidenavMenu}>
+        <CurrentUserContext.Provider value={currentUser}>
+          <div className="">
+            <Topnav />
+            <Sidenav />
+            <div className="bg-slate-200 min-h-screen w-full lg:pl-[22.5%] lg:pb-8 lg:pr-8 lg:pt-32">
+              <div className="w-full min-h-screen p-8 relative">
+                <Outlet />
+              </div>
             </div>
           </div>
-        </div>
-      </CurrentUserContext.Provider>
-    </SidenavContext.Provider>
+        </CurrentUserContext.Provider>
+      </SidenavContext.Provider>
+    </DisplaySidenavContext.Provider>
   ) : (
     <Navigate to="/auth/login" />
   );

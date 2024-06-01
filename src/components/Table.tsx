@@ -8,7 +8,7 @@ import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
-import { formatDate, formatPrice } from "../utils/utils";
+import { formatDate, formatPhoneNumber, formatPrice } from "../utils/utils";
 import MyModal from "./Modal/Modal";
 import { GetResquest, InputField, TableField } from "../utils/interfaces";
 import {
@@ -55,6 +55,8 @@ function MyTable({
         success: boolean;
         data: any[];
       } = await fetchFromTable(tableName);
+      console.log(response.data);
+
       setData(response.data);
       console.log(response);
 
@@ -103,6 +105,16 @@ function MyTable({
     let _value = value;
     if (key === "CreatedAt" || key === "UpdatedAt") _value = formatDate(value);
     if (key === "Price" || key === "Total") _value = formatPrice(_value);
+    if (key === "PhoneNumber") _value = formatPhoneNumber(_value);
+    if (key === "StatusName") {
+      if (_value === "Chờ xác nhận") {
+        _value = <div className="text-orange-500 font-semibold">{_value}</div>;
+      } else if (_value === "Sẵn sàng giao hàng") {
+        _value = <div className="text-green-500 font-semibold">{_value}</div>;
+      } else if (_value === "Giao hàng thành công") {
+        _value = <div className="text-primary-500 font-semibold">{_value}</div>;
+      }
+    }
 
     let _align:
       | "left"
